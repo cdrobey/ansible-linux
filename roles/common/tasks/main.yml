@@ -1,14 +1,31 @@
 ---
   - include: apt.yml
-    tags: ['apt']
+    tags:
+      - common-apt
+      - common
+
   - include: deployer.yml
     when: common_deployer_manage
-    tags: ['deployer']
+    tags:
+      - common-deployer
+      - common
+
   - include: hostname.yml
-    tags: ['hostname']
+    tags:
+      - common-hostname
+      - common
+
   - include: timezone.yml
-    tags: ['timezone']
+    tags:
+      - common-timezone
+      - common
+
   - include: ssh.yml
-    tags: ['ssh']
+    tags:
+      - common-ssh
+      - common
+
   - include: ntp.yml
-    tags: ['ntp']
+    tags:
+      - common-ntp
+      - common
