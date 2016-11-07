@@ -1,0 +1,9 @@
+---
+- name: reload ufw
+  command: ufw reload
+
+- name: reenable ufw
+  command: "{{ item }}"
+  with_items:
+    - ufw disable
+    - ufw enable

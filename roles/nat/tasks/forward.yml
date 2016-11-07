@@ -1,0 +1,24 @@
+---
+  - name: Modify Default Forward Policy to ACCEPT
+    action: lineinfile dest=/etc/default/ufw regexp="^DEFAULT_FORWARD_POLICY" line="DEFAULT_FORWARD_POLICY=\"ACCEPT\"" state=present
+    notify: reload ufw
+
+  - name: Enable IP Forwarding
+    action: lineinfile dest=/etc/ufw/sysctl.conf line="net/ipv4/ipforwarding=1" state=present
+    notify: reload ufw
+
+  - name: Insert NAT Block for Maquerading
+    blockinfile:
+      dest: /etc/ufw/before.rules
+      insertbefore: BOF
+      block: |
+        # nat Table rules
+        *nat
+        :POSTROUTING ACCEPT [0:0]
+
+        # Forward traffic from eth1 through eth0.
+        -A POSTROUTING -j MASQUERADE
+        
+        # don't delete the 'COMMIT' line or these nat table rules won't be processed
+        COMMIT
+    notify: reenable ufw
