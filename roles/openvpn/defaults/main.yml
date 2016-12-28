@@ -1,0 +1,66 @@
+---
+
+openvpn_enabled: yes                                # The role is enabled
+
+openvpn_etcdir: /etc/openvpn
+openvpn_keydir: "{{openvpn_etcdir}}/keys"
+
+# Installation settings
+openvpn_use_external_repo: false                    # Enable upstream OpenVPN repository
+openvpn_use_system_easyrsa: false                   # Install EasyRSA from system packages
+
+# Default settings (See OpenVPN documentation)
+openvpn_host: "{{inventory_hostname}}"              # The server address
+openvpn_port: 1194
+openvpn_proto: udp
+openvpn_dev: tun
+openvpn_server: 172.16.21.0 255.255.255.0           # Set empty for skip
+openvpn_bridge: {}
+openvpn_max_clients: 20
+openvpn_log: /var/log/openvpn.log                   # Log's directory
+openvpn_keepalive: "10 120"
+openvpn_ifconfig_pool_persist: ipp.txt
+openvpn_comp_lzo: yes                               # Enable compression
+openvpn_cipher: AES-256-CBC                              # Encryption algorithm
+openvpn_status: openvpn-status.log
+openvpn_verb: 3
+openvpn_tls_auth : False                            # Enable perfect forward secracyxy
+openvpn_tls_key  : "ta.key"
+openvpn_user: nobody
+openvpn_group: nogroup
+openvpn_resolv_retry: infinite
+openvpn_client_to_client: yes
+openvpn_server_options:                           # Additional server options
+  - push "route 10.21.1.0 255.255.255.0"
+                                                    # openvpn_server_options:
+                                                    # - dev-node MyTap
+                                                    # - client-to-client
+openvpn_client_options: []                          # Additional client options
+                                                    # openvpn_client_options:
+                                                    # - dev-node MyTap
+                                                    # - client-to-client
+
+openvpn_key_country: US
+openvpn_key_province: TX
+openvpn_key_city: Friendswood
+openvpn_key_org: Friendswood-Metals
+openvpn_key_email: admin@friendswoodmetals.com
+openvpn_key_size: 1024
+openvpn_clients: [firewall,client,mobile]                         # Make clients certificate
+openvpn_clients_revoke: []                        # Revoke clients certificates
+
+# Use PAM authentication
+openvpn_use_pam: no
+openvpn_use_pam_users: []                         # If empty use system users
+                                                  # otherwise use users from the option
+                                                  # openvpn_use_pam_users:
+                                                  # - { name: user, password: password }
+
+# LDAP authentication and configuration (optional)
+openvpn_use_ldap: no
+openvpn_ldap_tlsenable: 'no'
+openvpn_ldap_follow_referrals: 'no'
+
+# Use simple authentication (default is disabled)
+openvpn_simple_auth: no
+openvpn_simple_auth_password: ""
