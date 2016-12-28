@@ -1,0 +1,93 @@
+---
+
+openssh_enabled: yes          # Enable the role
+
+openssh_client_install: yes   # Install OpenSSH Client
+openssh_server_install: yes   # Install OpenSSH Server
+
+openssh_server_vars:          # Use this variable for setup server
+  PasswordAuthentication no
+  PermitRootLogin no
+
+openssh_client_vars: {}       # Use this variable for setup client
+                              # Ex. openssh_client_vars:
+                              #       ForwardAgent: yes
+
+openssh_server_defaults:      # Default values. For setup server use 'openssh_server_vars' variable above
+  AcceptEnv: LANG LC_*
+  AllowGroups: []
+  AllowUsers: []
+  Banner: /etc/issue.net
+  ChallengeResponseAuthentication: no
+  GSSAPIAuthentication: no
+  GSSAPICleanupCredentials: yes
+  HostKey:
+  - /etc/ssh/ssh_host_dsa_key
+  - /etc/ssh/ssh_host_ecdsa_key
+  - /etc/ssh/ssh_host_rsa_key
+  HostbasedAuthentication: no
+  IgnoreRhost: yes
+  IgnoreUserKnownHosts: yes
+  KerberosAuthentication: no
+  KerberosOrLocalPasswd: yes
+  KerberosTicketCleanup: yes
+  KeyRegenerationInterval: 3600
+  ListenAddress: [ "0.0.0.0", "::"]
+  LogLevel: INFO
+  LoginGraceTime: 120
+  MaxStartups: "10:30:60"
+  PasswordAuthentication: yes
+  PermitEmptyPasswords: no
+  PermitRootLogin: yes
+  Port: 22
+  PrintLastLog: yes
+  PrintMotd: no
+  Protocol: 2
+  PubkeyAuthentication: yes
+  RSAAuthentication: yes
+  RhostsRSAAuthentication: no
+  ServerKeyBits: 768
+  StrictModes: yes
+  Subsystem: sftp /usr/lib/openssh/sftp-server
+  SyslogFacility: AUTH
+  TCPKeepAlive: yes
+  UseDNS: no
+  UseLogin: no
+  UsePAM: yes
+  UserPrivilegeSeparation: yes
+  X11DisplayOffset: 10
+  X11Forwarding: yes
+
+# Client options
+openssh_client_defaults:      # Default values. For setup client use 'openssh_client_vars' variable above
+  AddressFamily: any
+  BatchMode: no
+  CheckHostIP: yes
+  ConnectTimeout: 0
+  ForwardAgent: no
+  ForwardX11: no
+  ForwardX11Trusted: yes
+  GSSAPIAuthentication: yes
+  GSSAPIDelegateCredentials: no
+  GSSAPIKeyExchange: no
+  GSSAPITrustDNS: no
+  HashKnownHosts: yes
+  Host: "*"
+  HostbasedAuthentication: no
+  IdentityFile:
+  - ~/.ssh/identity
+  - ~/.ssh/id_rsa
+  - ~/.ssh/id_dsa
+  EscapeChar: "~"
+  PasswordAuthentication: yes
+  PermitLocalCommand: no
+  Port: 22
+  Protocol: "2,1"
+  RSAAuthentication: yes
+  RhostsRSAAuthentication: no
+  SendEnv:
+  - LANG LC_*
+  StrictHostKeyChecking: ask
+  Tunnel: no
+  TunnelDevice: "any:any"
+  VisualHostKey: no

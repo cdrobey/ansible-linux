@@ -1,2 +1,2 @@
-[servers]
-10.1.1.162
+[firewall]
+firewall ansible_host=52.8.178.157 ansible_user=ubuntu

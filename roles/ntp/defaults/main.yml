@@ -1,0 +1,4 @@
+---
+
+ntp_enabled: yes    # Enable the role
+ntp_service: yes    # Setup and start the NTP service
