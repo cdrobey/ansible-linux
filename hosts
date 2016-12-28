@@ -1,2 +1,5 @@
 [firewall]
-test.fm.local ansible_host=52.8.178.157 ansible_port=22
+aws.friendswoodmetals.com ansible_host=52.8.178.157 ansible_port=22
+
+[servers]
+adm.fr.lan ansible_port=22

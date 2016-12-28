@@ -18,7 +18,6 @@ apt_build_packages:
 - ncurses-dev
 apt_default_packages_install: yes  # Install some packages (see list bellow)
 apt_default_packages:         # List of packages which be installed
-  - aptitude
   - git
   - htop
   - iftop
