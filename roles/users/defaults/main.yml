@@ -1,9 +1,37 @@
 ---
 
-hostname_enabled: yes
-hostname_hostname: "{{inventory_hostname}}"
-hostname_hostname_short: "{{hostname_hostname.split('.')[:-1]|join('.')}}"
-hostname_hosts: {}        # Additional hosts to append in hosts file
-                          # Ex. hostname_hosts:
-                          #       myhost.com: 192.168.1.1
-                          #       yourhost.com: 192.168.1.2
+users_enabled: yes              # The role is enabled
+
+users_groups: 
+  - name: deploy                # Create groups
+                                # Simple syntax:
+                                #   users_groups: [name1, name2]
+                                # Complex syntax:
+                                #   users_groups:
+                                #     - name: name1
+                                #       system: yes
+                                #     - name: name2
+
+users_users:                  # Create users
+  - name: deploy
+    groups: admin,sudo                               # Simple syntax:
+                                #   users_users: [name1, name2]
+                                # Complex syntax:
+                                #   users_users:
+                                #     - name: name1
+                                #       groups: admin,sudo
+                                #       shell: /bin/zsh
+
+users_ssh_keys:               # Assign allowed keys to users
+  - name: deploy
+    authorized:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7YrtR3tfvCNWZ83k8JGdJxzha0esIKaszA/prM6asxbVRg/g4WpRFjIDRTIPcycynQ3teDjAeRXsz/Ri8bgfWQEMsAFS+M0PEQV14+qxUGeaB8AU/JodmZ1cjCEN961MAInvQnbUHYEEDDEkRo0CEG5ea4ztPvDCIBV3qW5MZbkHUuAF1s8Tpr7pO4OXkkngZEcAgUscemaQMGr/qR0fJECDnliRuGH3vFoJnZeh3ElTUM71eb3IQeMkaivQ+F1kUOZCufu59pCJbDPYF/Sk1sejv8QnUfs8f3CvuqElZ0uFjuWMgbNWRojcj1LB/TFK5M3M+94HAhzUJp/tkHDM9 chris@familyroberosn.com
+
+users_to_install: []            # List of usernames. If not empty only users from the list will be installed.
+                                # So that way you could keep a huge list of users somewhere and install only
+                                # some of them in special environments.
+
+users_shell: /bin/bash          # Default user shell
+
+users_remove_users: []          # List of user names which will be removed
+users_remove_groups: []         # List of group names which will be removed

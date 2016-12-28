@@ -1,2 +1,2 @@
 [firewall]
-firewall ansible_host=52.8.178.157 ansible_user=ubuntu
+test.fm.local ansible_host=52.8.178.157 ansible_port=22

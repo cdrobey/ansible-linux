@@ -6,8 +6,8 @@ openssh_client_install: yes   # Install OpenSSH Client
 openssh_server_install: yes   # Install OpenSSH Server
 
 openssh_server_vars:          # Use this variable for setup server
-  PasswordAuthentication no
-  PermitRootLogin no
+  PasswordAuthentication: no
+  PermitRootLogin: no
 
 openssh_client_vars: {}       # Use this variable for setup client
                               # Ex. openssh_client_vars:

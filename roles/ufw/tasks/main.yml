@@ -5,6 +5,6 @@
   when: not ansible_os_family == "Debian"
 
 - include: install.yml
-- include: reset.yml
 - include: config.yml
 - include: service.yml
+  tags: [ufw]
