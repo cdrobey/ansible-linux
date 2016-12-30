@@ -17,10 +17,10 @@
   apt:
     name: "{{item}}"
   with_items:
-  - aptitude
   - python-minimal
   - python-apt
   - python-pycurl
+  - aptitude
   - unattended-upgrades
 
 - name: Reset default APT sources

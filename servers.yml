@@ -1,13 +1,8 @@
 ---
-- hosts: server
+- hosts: servers
   remote_user: ubuntu
   become: yes
   become_method: sudo
-  vars:
-    ufw_rules:
-      - { port: 22, rule: allow }
-      - { port: 1194, rule: allow }
-
   roles:
     - apt 
     - hostname
@@ -16,5 +11,3 @@
     - timezone
     - users
     - ufw
-    - nat
-    - openvpn

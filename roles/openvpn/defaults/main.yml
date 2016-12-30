@@ -1,66 +1,46 @@
 ---
+# defaults file for openvpn
 
-openvpn_enabled: yes                                # The role is enabled
+openvpn_version: 2.3.11
 
-openvpn_etcdir: /etc/openvpn
-openvpn_keydir: "{{openvpn_etcdir}}/keys"
+openvpn_static: true
 
-# Installation settings
-openvpn_use_external_repo: false                    # Enable upstream OpenVPN repository
-openvpn_use_system_easyrsa: false                   # Install EasyRSA from system packages
+openvpn_client: false
+openvpn_server: false
 
-# Default settings (See OpenVPN documentation)
-openvpn_host: "{{inventory_hostname}}"              # The server address
-openvpn_port: 1194
-openvpn_proto: udp
+openvpn_auth_enable: false
+
+openvpn_client_endpoint: 172.16.21.2
+openvpn_server_endpoint: 172.16.21.1
+openvpn_client_ifconfig: "{{ openvpn_client_endpoint }} {{ openvpn_server_endpoint }}"
+openvpn_server_ifconfig: "{{ openvpn_server_endpoint }} {{ openvpn_client_endpoint }}"
+
+openvpn_cipher: AES-256-CBC
+openvpn_auth: SHA1
+openvpn_lport: 1194
+openvpn_client_pull: false
 openvpn_dev: tun
-openvpn_server: 172.16.21.0 255.255.255.0           # Set empty for skip
-openvpn_bridge: {}
-openvpn_max_clients: 20
-openvpn_log: /var/log/openvpn.log                   # Log's directory
-openvpn_keepalive: "10 120"
-openvpn_ifconfig_pool_persist: ipp.txt
-openvpn_comp_lzo: yes                               # Enable compression
-openvpn_cipher: AES-256-CBC                              # Encryption algorithm
-openvpn_status: openvpn-status.log
+openvpn_comp_lzo: true
+openvpn_daemon: true
+openvpn_keepalive: '10 60'
+openvpn_nobind: true
+openvpn_persist_key: true
+openvpn_persist_tun: true
+openvpn_ping_timer_rem: true
+openvpn_proto: udp
+openvpn_remote_host: 'aws.friendswoodmetals.com'
+openvpn_remote_port: 1194
+openvpn_remote_proto: "{{ openvpn_proto }}"
+openvpn_resolv_retry: infinite
+openvpn_secret: ''
 openvpn_verb: 3
-openvpn_tls_auth : False                            # Enable perfect forward secracyxy
-openvpn_tls_key  : "ta.key"
+openvpn_status: /var/log/openvpn-status.log
+openvpn_log_append:  /var/log/openvpn.log
+openvpn_route1: ''
+openvpn_route2: ''
+openvpn_route3: ''
+openvpn_packages:
+  - openvpn
+openvpn_service_name: openvpn
 openvpn_user: nobody
 openvpn_group: nogroup
-openvpn_resolv_retry: infinite
-openvpn_client_to_client: yes
-openvpn_server_options:                           # Additional server options
-  - push "route 10.21.1.0 255.255.255.0"
-                                                    # openvpn_server_options:
-                                                    # - dev-node MyTap
-                                                    # - client-to-client
-openvpn_client_options: []                          # Additional client options
-                                                    # openvpn_client_options:
-                                                    # - dev-node MyTap
-                                                    # - client-to-client
-
-openvpn_key_country: US
-openvpn_key_province: TX
-openvpn_key_city: Friendswood
-openvpn_key_org: Friendswood-Metals
-openvpn_key_email: admin@friendswoodmetals.com
-openvpn_key_size: 1024
-openvpn_clients: [firewall,client,mobile]                         # Make clients certificate
-openvpn_clients_revoke: []                        # Revoke clients certificates
-
-# Use PAM authentication
-openvpn_use_pam: no
-openvpn_use_pam_users: []                         # If empty use system users
-                                                  # otherwise use users from the option
-                                                  # openvpn_use_pam_users:
-                                                  # - { name: user, password: password }
-
-# LDAP authentication and configuration (optional)
-openvpn_use_ldap: no
-openvpn_ldap_tlsenable: 'no'
-openvpn_ldap_follow_referrals: 'no'
-
-# Use simple authentication (default is disabled)
-openvpn_simple_auth: no
-openvpn_simple_auth_password: ""

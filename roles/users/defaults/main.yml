@@ -14,7 +14,7 @@ users_groups:
 
 users_users:                  # Create users
   - name: deploy
-    groups: admin,sudo                               # Simple syntax:
+    groups: adm,sudo                               # Simple syntax:
                                 #   users_users: [name1, name2]
                                 # Complex syntax:
                                 #   users_users:
