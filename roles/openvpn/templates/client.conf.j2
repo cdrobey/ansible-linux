@@ -17,11 +17,14 @@ keepalive {{ openvpn_keepalive }}
 {% if openvpn_nobind %}
 nobind
 {% endif %}
-{% if openvpn_ns_cert_type %}
-ns-cert-type {{ openvpn_ns_cert_type }}
-{% endif %}
 {% if openvpn_persist_key %}
 persist-key
+{% endif %}
+{% if openvpn_cipher %}
+cipher {{ openvpn_cipher }}
+{% endif %}
+{% if openvpn_auth %}
+auth {{ openvpn_auth }}
 {% endif %}
 {% if openvpn_persist_tun %}
 persist-tun
@@ -43,4 +46,16 @@ resolv-retry {{ openvpn_resolv_retry }}
 user {{ openvpn_user }}
 {% if openvpn_verb %}
 verb {{ openvpn_verb }}
+{% endif %}
+{% if openvpn_log_append %}
+log-append {{ openvpn_log_append }}
+{% endif %}
+{% if openvpn_route1 %}
+{{ openvpn_route1 }}
+{% endif %}
+{% if openvpn_route2 %}
+{{ openvpn_route2 }}
+{% endif %}
+{% if openvpn_route3 %}
+{{ openvpn_route3 }}
 {% endif %}

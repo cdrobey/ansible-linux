@@ -7,7 +7,7 @@
     ufw_rules:
       - { port: 22, rule: allow }
       - { port: 1194, rule: allow }
-    openvpn_server: true
+    openvpn_client: true
     openvpn_secret: | 
       #
       # 2048 bit OpenVPN static key
@@ -30,8 +30,10 @@
       8a5847a6c3e24c506d0ed807a6d7517c
       64b66292b15d37de2e04860c53b4180f
       -----END OpenVPN Static key V1-----
+    openvpn_route1: route 10.11.0.0 255.255.0.0
+    openvpn_route2: route 172.16.1.0 255.255.255.0
+    openvpn_route3: route 10.1.0.0 255.255.0.0
 
-    openvpn_route1: 'route 10.11.0.0 255.255.0.0'
   roles:
     - apt 
     - hostname
@@ -39,6 +41,6 @@
     - ssh
     - timezone
     - users
+    - openvpn
     - ufw
     - nat
-    - openvpn

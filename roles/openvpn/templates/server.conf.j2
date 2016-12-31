@@ -27,10 +27,6 @@ ping-timer-rem
 {% if openvpn_static %}
 secret {{ openvpn_secret_file }}
 {% endif %}
-{% if openvpn_auth %}
-auth {{ openvpn_auth }}
-{% endif %}
-user {{ openvpn_user }}
 {% if openvpn_verb %}
 verb {{ openvpn_verb }}
 {% endif %}

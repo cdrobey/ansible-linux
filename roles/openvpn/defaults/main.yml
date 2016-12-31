@@ -17,8 +17,8 @@ openvpn_server_ifconfig: "{{ openvpn_server_endpoint }} {{ openvpn_client_endpoi
 
 openvpn_cipher: AES-256-CBC
 openvpn_auth: SHA1
-openvpn_lport: 1194
-openvpn_client_pull: false
+openvpn_lport: 9985
+openvpn_pull: false
 openvpn_dev: tun
 openvpn_comp_lzo: true
 openvpn_daemon: true
@@ -28,9 +28,9 @@ openvpn_persist_key: true
 openvpn_persist_tun: true
 openvpn_ping_timer_rem: true
 openvpn_proto: udp
-openvpn_remote_host: 'aws.friendswoodmetals.com'
-openvpn_remote_port: 1194
-openvpn_remote_proto: "{{ openvpn_proto }}"
+openvpn_remote_host: 'vpn.friendswoodmetals.com'
+openvpn_remote_port: 9985
+openvpn_remote_proto: "udp"
 openvpn_resolv_retry: infinite
 openvpn_secret: ''
 openvpn_verb: 3
