@@ -1,0 +1,19 @@
+---
+
+# Insert Steelplus Automatic Start (Checks for .bashrc)
+- name: Insert Steelplus Start as last action of .bashrc
+  blockinfile:
+    dest: "{{item.path}}"
+    insertafter: EOF
+    block: |
+      # Set scoansi Terminal.  Needs to be set in putty and loaded into terminfo
+      export TERM=scoansi
+
+      # Set path and shared library environment
+      PATH=~/rmcobol:~/SPLUS06:$PATH
+      LD_LIBRARY_PATH=~/rmcobol:~/SPLUS06:$LD_LIBRARY_PATH
+
+      if [ -x ~/SPLUS06/splusn ] ; then
+        (cd ~/SPLUS06 ; ./splusn )
+      fi
+  with_items: "{{steelplus_users}}"

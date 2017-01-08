@@ -1,0 +1,6 @@
+---
+# defaults file for steelplus
+
+# Steelplus Users (Assumes users were created in earlier role
+steelplus_users : {}
+

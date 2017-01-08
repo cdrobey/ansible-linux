@@ -1,9 +1,11 @@
 ---
-- hosts: steelplus
+- hosts: sp
   remote_user: ubuntu
   become: yes
   become_method: sudo
   vars:
+    apt_packages:
+      - libc6-i386
     openssh_server_vars: { PasswordAuthentication: yes, PermitRootLogin: no }
     users_groups:
       - { name: steelplus }
@@ -15,7 +17,9 @@
     cups_printer_list:
       - { name: hplj1320, uri: "socket://hplj1320:9100", model: "drv:///hpijs.drv/hp-laserjet_1320-hpijs.ppd", shared: true, default: true }
       - { name: hplj2100, uri: "socket://hplj2100:9100", model: "drv:///hpijs.drv/hp-laserjet_2100-hpijs.ppd", shared: true,  default: false }
-    ufw_rules:
+    steelplus_users:
+      - { name: steelplus, path: "/home/steelplus/.bashrc" }
+      - { name: sarchive, path: "/home/sarchive/.bashrc" }
 
   roles:
     - apt 
@@ -26,4 +30,4 @@
     - users
     - ufw
     - cups
-
+    - steelplus
