@@ -1,0 +1,16 @@
+---
+- name: Removing all printers and classes on server.
+  cups_lpadmin:
+    purge: True
+  tags: cups_rm
+
+- name: Install printers using cups_lpadmin
+  cups_lpadmin:
+    name: "{{item.name}}"
+    uri: "{{item.uri}}"
+    model: "{{item.model}}"
+    shared: "{{item.shared}}"
+    default: "{{item.default}}"
+  with_items:
+    - "{{cups_printer_list}}"
+  tags: cups_install

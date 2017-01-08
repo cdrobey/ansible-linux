@@ -1,0 +1,31 @@
+---
+cups_packages_to_install:
+  - cups
+  - cups-pdf
+  - hplip
+  - hpijs-ppds
+cups_services:
+  - cups
+
+cups_purge_all_printers_and_classes: False
+cups_printer_default_state: "present"
+cups_printer_default_report_ipp_supplies: True
+cups_printer_default_report_snmp_supplies: True
+cups_printer_default_is_shared: True
+cups_printer_default_enabled: True
+cups_printer_default_assign_cups_policy: "default"
+
+cups_printers_and_classes_to_be_removed: []
+#  - TEST
+#  - Xerox
+
+cups_printer_list: []
+#  - name: "hplj1320"
+#    printer_or_class: "hplj1320"
+#    state: "present"
+#    uri: "socket://hplj1320.fm.local:9100"
+#  - name: "TestPrinter2"
+#    printer_or_class: "printer"
+#    state: "present"
+#    uri: "file:///dev/null"
+

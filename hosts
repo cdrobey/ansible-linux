@@ -1,5 +1,8 @@
 [firewall]
 aws.friendswoodmetals.com ansible_host=52.8.178.157 ansible_port=22
 
-[servers]
+[management]
 am.fr.lan ansible_host=10.1.1.163 ansible_port=22
+
+[steelplus]
+sp.fm.local ansible_host=10.21.2.128 ansible_port=22

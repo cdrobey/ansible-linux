@@ -1,0 +1,29 @@
+---
+- hosts: steelplus
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  vars:
+    openssh_server_vars: { PasswordAuthentication: yes, PermitRootLogin: no }
+    users_groups:
+      - { name: steelplus }
+      - { name: sarchive }
+    users_users:
+      - { name: steelplus, groups: steelplus, password: $6$fk2t9qN0FS$2/e2PATYf3cyScZkEjHtP2yOcrM7WcuctjiR/PrvwmtDqzuU5I0rn8WYOniYDTncdZwz9x6bmSsiilWfS74PE0 }
+      - { name: sarchive, groups: sarchive, password: $6$muUXNv3WRPcg$GcrAmE/0QyX6iAtPWD5jdG3LSJDMCMQJTwtVlGI2I/FgXAit9GQh9CnUtUlEdWCN0N8aMWWKa9SPyzeyk/ZwU/ }
+    users_ssh_keys: {}
+    cups_printer_list:
+      - { name: hplj1320, uri: "socket://hplj1320:9100", model: "drv:///hpijs.drv/hp-laserjet_1320-hpijs.ppd", shared: true, default: true }
+      - { name: hplj2100, uri: "socket://hplj2100:9100", model: "drv:///hpijs.drv/hp-laserjet_2100-hpijs.ppd", shared: true,  default: false }
+    ufw_rules:
+
+  roles:
+    - apt 
+    - hostname
+    - ntp
+    - ssh
+    - timezone
+    - users
+    - ufw
+    - cups
+

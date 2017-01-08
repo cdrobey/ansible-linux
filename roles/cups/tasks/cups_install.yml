@@ -1,0 +1,5 @@
+---
+- name: Install CUPS
+  apt: name={{ item }} state=latest
+  with_items:
+    - "{{cups_packages_to_install}}"

@@ -1,0 +1,9 @@
+---
+- block:
+    - name: Include - Install CUPS
+      include: cups_install.yml
+      tags: [cups]
+
+    - name: Include - Install all Devices
+      include: cups_lpadmin.yml
+      tags: [cups]
