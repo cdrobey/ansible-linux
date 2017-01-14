@@ -1,0 +1,9 @@
+---
+- name:  Copy putty terminfo into temporary directory
+  copy: src=../files/putty.ti dest=/tmp/putty.ti
+
+- name: Install the terminfo file
+  shell: tic /tmp/putty.ti
+
+- name: Clean up
+  file: path=/tmp/putty.ti state=absent

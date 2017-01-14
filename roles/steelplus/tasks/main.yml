@@ -2,3 +2,6 @@
   - include: bash.yml
     tags:
       - steelplus
+  - include: terminfo.yml
+    tags:
+      - steelplus

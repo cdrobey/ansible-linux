@@ -6,9 +6,6 @@
     dest: "{{item.path}}"
     insertafter: EOF
     block: |
-      # Set scoansi Terminal.  Needs to be set in putty and loaded into terminfo
-      export TERM=scoansi
-
       # Set path and shared library environment
       PATH=~/rmcobol:~/SPLUS06:$PATH
       LD_LIBRARY_PATH=~/rmcobol:~/SPLUS06:$LD_LIBRARY_PATH
