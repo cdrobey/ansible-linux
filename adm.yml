@@ -1,8 +1,12 @@
 ---
 - hosts: adm
-  remote_user: ubuntu
+  remote_user: deploy
   become: yes
   become_method: sudo
+  vars:
+    apt_packages:
+      - docker
+      - nut
   roles:
     - apt 
     - hostname
