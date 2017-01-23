@@ -1,0 +1,14 @@
+---
+- hosts: adm
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  roles:
+    - apt 
+    - hostname
+    - ntp
+    - ssh
+    - timezone
+    - users
+    - sudo
+    - ufw

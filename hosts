@@ -6,3 +6,6 @@ am.fr.lan ansible_host=10.1.1.163 ansible_port=22
 
 [sp]
 sp.fm.local ansible_host=10.21.2.128 ansible_port=22
+
+[adm]
+adm.fm.local ansible_host=10.1.1.47 ansible_port=22
